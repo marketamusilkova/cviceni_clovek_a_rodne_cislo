@@ -1,0 +1,92 @@
+# cvičení 1
+# Vytvoř třídu Clovek. Clovek má atributy jméno a příjmení, které se nastavují při vytváření objektu.
+
+# Otestujte (například) pomocí:
+
+# osoba = Clovek('Anna', 'Nová')
+# print(osoba.jmeno, osoba.prijmeni) # Anna Nová
+class Clovek:
+    def __init__(self, jmeno, prijmeni):
+        self.jmeno = jmeno
+        self.prijmeni = prijmeni
+        print("Vytvářím člověka, který má jméno {} a příjmení {}.".format(jmeno, prijmeni))
+
+osoba = Clovek('Anna', 'Nová')
+print(osoba.jmeno, osoba.prijmeni)
+
+# cvičení 2
+
+# Zařiď, aby se při vytváření objektu zajistilo, že jméno i příjmení budou ve správném formátu, tzn. první písmeno velké, ostatní malá (např. Anna Nováková - správně, aNNa NoVáKoVá - špatně).
+
+# Otestujte (například) pomocí:
+
+# osoba = Clovek('anna', 'nová')
+# print(osoba.jmeno, osoba.prijmeni) # Anna Nová
+# osoba = Clovek('AnnA', 'nOVá')
+# print(osoba.jmeno, osoba.prijmeni) # Anna Nová
+def format_jmena(jmeno):
+    prvni_pismeno = jmeno[0]
+    zbytek_pismen = jmeno[1:len(jmeno)]
+    spravne_jmeno = prvni_pismeno.upper() + zbytek_pismen.lower()
+    return spravne_jmeno
+
+class Clovek:
+    def __init__(self, jmeno, prijmeni):
+        self.jmeno = format_jmena(jmeno)
+        self.prijmeni = format_jmena(prijmeni)
+
+osoba = Clovek('anna', 'nová')
+print(osoba.jmeno, osoba.prijmeni) 
+osoba = Clovek('AnnA', 'nOVá')
+print(osoba.jmeno, osoba.prijmeni)
+
+# cvičení 3
+
+# Přidej třídě Clovek metodu kdo_jsi, která danou osobu představí.
+
+# Otestujte (například) pomocí:
+
+# osoba = Clovek('anna', 'nová')
+# print(osoba.kdo_jsi()) # Jmenuji se Anna Nová
+def format_jmena(jmeno):
+    prvni_pismeno = jmeno[0]
+    zbytek_pismen = jmeno[1:len(jmeno)]
+    spravne_jmeno = prvni_pismeno.upper() + zbytek_pismen.lower()
+    return spravne_jmeno
+
+class Clovek:
+    def __init__(self, jmeno, prijmeni):
+        self.jmeno = format_jmena(jmeno)
+        self.prijmeni = format_jmena(prijmeni)
+    def kdo_jsi(self):
+        return "Jmenuji se {} {}.".format(self.jmeno, self.prijmeni)
+
+osoba = Clovek('anna', 'nová')
+print(osoba.kdo_jsi())
+
+# cvičení 4
+
+# Rozšiř třídu Clovek tak, aby při vytváření třídy došlo k uložení iniciál do atributu inicialy a následně rozšiř metodu kdo_jsi, aby uvedla rovněž iniciály.
+
+# Otestujte (například) pomocí:
+
+# osoba = Clovek('anna', 'nová')
+# print(osoba.inicialy) # AN
+# print(osoba.kdo_jsi()) # Jmenuji se Anna Nová a mé iniciály jsou AN
+def format_jmena(jmeno):
+    prvni_pismeno = jmeno[0]
+    zbytek_pismen = jmeno[1:len(jmeno)]
+    spravne_jmeno = prvni_pismeno.upper() + zbytek_pismen.lower()
+    return spravne_jmeno
+
+class Clovek:
+    def __init__(self, jmeno, prijmeni):
+        self.jmeno = format_jmena(jmeno)
+        self.prijmeni = format_jmena(prijmeni)
+        self.inicialy = self.jmeno[0] + self.prijmeni[0]
+    def kdo_jsi(self):
+        return "Jmenuji se {} {} a mé iniciály jsou {}.".format(self.jmeno, self.prijmeni, self.inicialy)
+    
+osoba = Clovek('anna', 'nová')
+print(osoba.inicialy) 
+print(osoba.kdo_jsi()) 
